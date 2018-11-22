@@ -9,7 +9,7 @@ def format_data():
 	date = arrow.now().format('MM/DD/YYYY')
 	time = gps_input[7:13]
 	hour = time[:2]
-	az_hour = str(int(hour) - 7)
+	az_hour = str(int(hour) - 7)#comment out this line for UTC, or change number for other timezones
 	minute = time[2:4]
 	second = time[4:]
 	final_time = 'Time: '+ az_hour+':'+minute+':'+second+' '+date +' MST'
