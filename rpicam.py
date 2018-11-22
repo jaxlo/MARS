@@ -42,5 +42,3 @@ def record():
 
 def socketListen():
 	pass
-def socketSend():
-	pass
