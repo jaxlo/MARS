@@ -3,7 +3,7 @@
 from time import *
 from picamera import picamera
 start_time = time.time()
-time_save = 1500 #25min
+time_save = 1200 #20min
 
 start = 0 #set to 1 to meet conditions below
 stop = 0 #set to 1 to meet conditions below
