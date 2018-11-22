@@ -32,7 +32,7 @@ def format_data():
 	print(str(final_long))
 	f.write('\n'+str(final_long))
 
-	alt = gps_input[46:53] #545.4,M
+	alt = gps_input[46:53]
 	length = alt[0:5]
 	final_alt = 'Altitude: '+length+' meters'
 	print(str(final_alt))
