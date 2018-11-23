@@ -68,7 +68,7 @@ class record():
 			else:
 				pass
 
-def checkConnection(host = '8.8.8.8', port = 53, timeout = 3): #Host is Google's public dns server
+def checkConnection(host = '192.168.1.135', port = 59281, timeout = 3): #change to ip address of laptop
 	try:
 		socket.setdefaulttimeout(timeout)
 		socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
