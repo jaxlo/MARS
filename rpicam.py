@@ -79,7 +79,7 @@ def checkConnection(host = '192.168.1.135', port = 59281, timeout = 3): #change 
 		return False
 
 def socketListen():
-
+        print('waiting to receive...')
 	with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 		sock.connect((NetworkHost, NetworkPort))
 		data = sock.recv(1024)
@@ -90,6 +90,6 @@ def socketListen():
 	return command
 
 record.start()
-print('Disconnect the Raspberry Pi from the internet')
+print('60 seconds to disconnect the Raspberry Pi from the internet')
 time.sleep(60) #Makes sure that the rpi can be disconnected from wifi before it checks the internet connecton to stop recording
 record.stop()
