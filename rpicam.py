@@ -1,7 +1,7 @@
 #Made by Jackson Lohman and TJ Reynolds in 2018
 #camera program for the raspberry pi 
 import time
-from picamera import picamera
+from picamera import PiCamera
 import socket
 
 comp = int(input('which computer: \n 0: Deimos \n 1: Phobos \n '))
@@ -29,11 +29,9 @@ try:
 	else:
 		pass
 	picam.start_preview()#comment out if not connected to an external monitor
-
 	print('picam enabled')
 	time.sleep(5)
 except ImportError:
-
 	print('picam disabled')
 
 class record():
@@ -45,7 +43,7 @@ class record():
 			print('Invalid, please try again')
 			record.start()
 	
-	def stop():#will need to do threading for the stop portion
+	def stop():
 		condition = True
 		while condition == True:
 			connection = checkConnection()
@@ -79,7 +77,7 @@ def checkConnection(host = '192.168.1.135', port = 59281, timeout = 3): #change 
 		return False
 
 def socketListen():
-        print('waiting to receive...')
+	print('waiting to recieve...')
 	with socket.socket(socket.AF_INET, socket.SOCK_STREAM) as sock:
 		sock.connect((NetworkHost, NetworkPort))
 		data = sock.recv(1024)
