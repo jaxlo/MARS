@@ -1,10 +1,10 @@
 #Made by Jackson Lohman and TJ Reynolds in 2018
 #camera program for the raspberry pi 
-from time import *
+import time
 from picamera import picamera
 import socket
 
-comp = int(input('which computer: \n 0: Deimos \n 1: Phobos'))
+comp = int(input('which computer: \n 0: Deimos \n 1: Phobos \n'))
 
 start_time = time.time()
 time_save = 1200 #20min
