@@ -4,7 +4,7 @@ import time
 from picamera import picamera
 import socket
 
-comp = int(input('which computer: \n 0: Deimos \n 1: Phobos \n'))
+comp = int(input('which computer: \n 0: Deimos \n 1: Phobos \n '))
 
 start_time = time.time()
 time_save = 1200 #20min
@@ -29,11 +29,11 @@ try:
 	else:
 		pass
 	picam.start_preview()#comment out if not connected to an external monitor
-	camSupport = True
+
 	print('picam enabled')
 	time.sleep(5)
 except ImportError:
-	camSupport = False
+
 	print('picam disabled')
 
 class record():
