@@ -69,8 +69,8 @@ class record():
 			else:
 				pass
 
-def checkConnection(host = '192.168.1.135', port = 59281, timeout = 3): #change to ip address of laptop
-	host = '192.168.1.135'
+def checkConnection(): 
+	host = '192.168.1.135' #change to ip address of laptop
 	response = os.system('ping -c 1 ' + host)
 	if response == 0:
 		print('connected to internet')
