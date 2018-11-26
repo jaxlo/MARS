@@ -3,6 +3,7 @@
 import time
 from picamera import PiCamera
 import socket
+import os
 
 comp = int(input('which computer: \n 0: Deimos \n 1: Phobos \n '))
 
@@ -28,7 +29,7 @@ try:
 		filename = 'phobos'		
 	else:
 		pass
-	picam.start_preview()#comment out if not connected to an external monitor
+	#picam.start_preview()#comment out if not connected to an external monitor
 	print('picam enabled')
 	time.sleep(5)
 except ImportError:
@@ -51,7 +52,8 @@ class record():
 				stop = socketListen()
 				if stop == 1:
 					picam.stop_recording()
-					picam.stop_preview()#comment out if not connected to an external monitor
+					#picam.stop_preview()#comment out if not connected to an external monitor
+					print('stopped recording')
 					condition = False
 				else:
 					print('Invalid, please try again')
@@ -59,7 +61,8 @@ class record():
 			elif connection == False:
 				if time.time() > start_time + time_save:
 					picam.stop_recording()
-					picam.stop_preview()#comment out if not connected to an external monitor
+					#picam.stop_preview()#comment out if not connected to an external monitor
+					print('stopped recording')
 					condition = False
 				else:
 					pass
@@ -67,13 +70,13 @@ class record():
 				pass
 
 def checkConnection(host = '192.168.1.135', port = 59281, timeout = 3): #change to ip address of laptop
-	try:
-		socket.setdefaulttimeout(timeout)
-		socket.socket(socket.AF_INET, socket.SOCK_STREAM).connect((host, port))
-		print('Connected to internet')
+	host = '192.168.1.135'
+	response = os.system('ping -c 1 ' + host)
+	if response == 0:
+		print('connected to internet')
 		return True
-	except:
-		print('Not connected to internet')
+	else:
+		print('not connected to the internet')
 		return False
 
 def socketListen():
