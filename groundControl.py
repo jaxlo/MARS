@@ -32,6 +32,7 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		final_time = 'Time: '+ az_hour+':'+minute+':'+second+' '+date +' MST'
 		print('\n'+str(final_time))
 		f.write('\n\n'+str(final_time))
+		f.close()
 
 		lat = gps_input[14:24]
 		deg_lat = lat[:2]
@@ -40,6 +41,7 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		final_lat = 'Latitude: '+deg_lat+'° '+sec_lat+"' " +dir_lat
 		print(str(final_lat))
 		f.write('\n'+str(final_lat))
+		f.close()
 
 		long = gps_input[25:36]
 		deg_long = long[:3]
@@ -48,12 +50,14 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		final_long = 'Longitude: '+deg_long+'° '+sec_long+"' " +dir_long
 		print(str(final_long))
 		f.write('\n'+str(final_long))
+		f.close()
 
 		alt = gps_input[46:53]
 		length = alt[0:5]
 		final_alt = 'Altitude: '+length+' meters'
 		print(str(final_alt))
 		f.write('\n'+str(final_alt))
+		f.close()
 
 	def run_format():
 		while True:
