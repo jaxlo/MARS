@@ -65,7 +65,7 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 			lora.format_data()
 			
 class rpi(): #turns on and off camera
-	def socketSend():
+	def socketSend():#runs socket twice to talk to 2 raspberry pi computers at the same time
 		sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		sock.bind(('', NetworkPort))#accept any ip address
 		sock.listen(1)
