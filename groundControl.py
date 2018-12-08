@@ -5,7 +5,7 @@ import socket
 import time
 
 #----- GLOBAL VARS -----#
-function = int(input('Which would you like to communicate with: \n 0: Phobos and Deimos \n 1:LoRa'))
+function = int(input('Which would you like to communicate with: \n 0: Phobos and Deimos \n 1: LoRa \n '))
 gps_input = ''
 f = open("C:\\Users\\reyno\\Documents\\marsgps.txt", "a") #change to whatever the .txt is
 NetworkPort = 59281
@@ -24,48 +24,50 @@ def selection():
 class lora(): #NEED to still to make it so that it brings in new gps data
 	def format_data():
 		date = arrow.now().format('MM/DD/YYYY')
-		time = gps_input[7:13]
+		time = gps_input[7:13] 
 		hour = time[:2]
 		az_hour = str(int(hour) - 7)
 		minute = time[2:4]
 		second = time[4:]
-		final_time = 'Time: '+ az_hour+':'+minute+':'+second+' '+date +' MST'
+		final_time = 'Time: '+ hour+':'+minute+':'+second+' '+date +' MST'
 		print('\n'+str(final_time))
 		f.write('\n\n'+str(final_time))
-		f.close()
 
-		lat = gps_input[14:24]
+		lat = gps_input[18:29] 
 		deg_lat = lat[:2]
-		sec_lat = lat[2:8]
-		dir_lat = lat[9:]
+		sec_lat = lat[2:9]
+		dir_lat = lat[10:]
 		final_lat = 'Latitude: '+deg_lat+'° '+sec_lat+"' " +dir_lat
 		print(str(final_lat))
 		f.write('\n'+str(final_lat))
-		f.close()
 
-		long = gps_input[25:36]
+		long = gps_input[30:42] 
 		deg_long = long[:3]
-		sec_long = long[3:9]
-		dir_long = long[10:]
+		sec_long = long[3:10]
+		dir_long = long[11:]
 		final_long = 'Longitude: '+deg_long+'° '+sec_long+"' " +dir_long
 		print(str(final_long))
 		f.write('\n'+str(final_long))
-		f.close()
 
-		alt = gps_input[46:53]
+		alt = gps_input[52:59] 
 		length = alt[0:5]
 		final_alt = 'Altitude: '+length+' meters'
 		print(str(final_alt))
 		f.write('\n'+str(final_alt))
-		f.close()
+
+		hdop = gps_input[47:51]
+		final_hdop = 'Postition accuracy: '+hdop+' meters'
+		print(str(final_hdop))
+		f.write('\n'+str(final_hdop))
 
 	def run_format():
 		while True:
-			gps_input = "$GPGGA,123519,4807.038,N,01131.000,E,1,08,0.9,545.4,M,46.9,M,,*47"  #need to change to get a new reading (probably function call)
+			global gps_input
+			gps_input = '$GPGGA,235300.000,3339.9614,N,11203.6514,W,1,7,1.06,450.1,M,-26.2,M,,*65'  #need to change to get a new reading (probably function call)
 			lora.format_data()
 			
 class rpi(): #turns on and off camera
-	def socketSend():#runs socket twice to talk to 2 raspberry pi computers at the same time
+	def socketSend():
 		sock = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 		sock.bind(('', NetworkPort))#accept any ip address
 		sock.listen(1)
