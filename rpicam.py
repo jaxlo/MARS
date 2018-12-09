@@ -14,7 +14,7 @@ filename = ''
 start = 0 #set to 1 to meet conditions below
 stop = 0 #set to 1 to meet conditions below
 
-NetworkHost = '192.168.1.135' #add ip of laptop
+NetworkHost = '192.168.1.135' #chamge to ip address of laptop
 NetworkPort = 59281
 
 try:
@@ -70,7 +70,7 @@ class record():
 				pass
 
 def checkConnection(): 
-	host = '192.168.1.135' #change to ip address of laptop
+	host = NetworkHost
 	response = os.system('ping -c 1 ' + host)
 	if response == 0:
 		print('connected to internet')
