@@ -68,9 +68,10 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		data = str(readser)
 		start = data[:6]
 		if start == '$GPGGA':
-			print(redser)
+			print(readser)
 		else:
 			print('Incomplete Data... Trying Again')
+		return readser
 
 	def run_format():
 		while True:
