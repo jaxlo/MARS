@@ -38,7 +38,7 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		print(str(final_lat))
 		f.write('\n'+str(final_lat))
 
-		long = gps_input[30:42] 
+		long = input[30:42] 
 		deg_long = long[:3]
 		sec_long = long[3:10]
 		dir_long = long[11:]
@@ -65,6 +65,7 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		start = data[:6]
 		if start == '$GPGGA':
 			print(data)
+			lora.format_data(data)
 		else:
 			print('Incomplete Data... Trying Again')
 			lora.getdata()
@@ -72,9 +73,7 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 
 	def run_format():
 		while True:
-			global gps_input
-			gps_input = lora.getdata() 
-			lora.format_data()
+			lora.getdata()
 			
 class rpi(): #turns on and off camera
 	def socketSend():
