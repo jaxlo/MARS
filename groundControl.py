@@ -3,11 +3,12 @@
 import arrow
 import socket
 import time
+import serial
 
 #----- GLOBAL VARS -----#
 function = int(input('Which would you like to communicate with: \n 0: Phobos and Deimos \n 1: LoRa \n '))
 gps_input = ''
-f = open("C:\\Users\\reyno\\Documents\\marsgps.txt", "a") #change to whatever the .txt is
+f = open("", "a") #add filepath to whatever the .txt is
 NetworkPort = 59281
 command = 1
 #-----------------------#
@@ -60,10 +61,21 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		print(str(final_hdop))
 		f.write('\n'+str(final_hdop))
 
+	def getdata():
+		ser = Serial.serial('/dev/ttyACM0', 9600) #change ACM0 to what ever it shows up as when feather is conected to linux laptop
+		ser.baudrate = 9600
+		readser = ser.readline().decode()
+		data = str(readser)
+		start = data[:6]
+		if start == '$GPGGA':
+			print(redser)
+		else:
+			print('Incomplete Data... Trying Again')
+
 	def run_format():
 		while True:
 			global gps_input
-			gps_input = '$GPGGA,235300.000,3339.9614,N,11203.6514,W,1,7,1.06,450.1,M,-26.2,M,,*65'  #need to change to get a new reading (probably function call)
+			gps_input = lora.getdata() 
 			lora.format_data()
 			
 class rpi(): #turns on and off camera
