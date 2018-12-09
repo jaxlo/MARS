@@ -62,7 +62,7 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		f.write('\n'+str(final_hdop))
 
 	def getdata():
-		ser = Serial.serial('/dev/ttyACM0', 9600) #change ACM0 to what ever it shows up as when feather is conected to linux laptop
+		ser = serial.Serial('/dev/ttyACM0', 9600) #change ACM0 to what ever it shows up as when feather is conected to linux laptop
 		ser.baudrate = 9600
 		readser = ser.readline().decode()
 		data = str(readser)
