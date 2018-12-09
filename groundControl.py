@@ -23,18 +23,14 @@ def selection():
 		selection()
 
 class lora(): #NEED to still to make it so that it brings in new gps data
-	def format_data():
+	def format_data(input):
 		date = arrow.now().format('MM/DD/YYYY')
-		time = gps_input[7:13] 
-		hour = time[:2]
-		az_hour = str(int(hour) - 7)
-		minute = time[2:4]
-		second = time[4:]
-		final_time = 'Time: '+ hour+':'+minute+':'+second+' '+date +' MST'
+		time = arrow.now().format('HH:mm:ss')
+		final_time = 'Time: ' + time + " " + date + ' MST'
 		print('\n'+str(final_time))
 		f.write('\n\n'+str(final_time))
 
-		lat = gps_input[18:29] 
+		lat = input[18:29] 
 		deg_lat = lat[:2]
 		sec_lat = lat[2:9]
 		dir_lat = lat[10:]
@@ -50,13 +46,13 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		print(str(final_long))
 		f.write('\n'+str(final_long))
 
-		alt = gps_input[52:59] 
+		alt = input[52:59] 
 		length = alt[0:5]
 		final_alt = 'Altitude: '+length+' meters'
 		print(str(final_alt))
 		f.write('\n'+str(final_alt))
 
-		hdop = gps_input[47:51]
+		hdop = input[47:51]
 		final_hdop = 'Postition accuracy: '+hdop+' meters'
 		print(str(final_hdop))
 		f.write('\n'+str(final_hdop))
@@ -68,10 +64,11 @@ class lora(): #NEED to still to make it so that it brings in new gps data
 		data = str(readser)
 		start = data[:6]
 		if start == '$GPGGA':
-			print(readser)
+			print(data)
 		else:
 			print('Incomplete Data... Trying Again')
-		return readser
+			lora.getdata()
+		return data
 
 	def run_format():
 		while True:
