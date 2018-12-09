@@ -1,4 +1,4 @@
-#Made by Jackson Lohman and TJ Reynolds 2018
+#Made by Jackson Lohman and TJ Reynolds in 2018
 #runs on the ground
 import arrow
 import socket
