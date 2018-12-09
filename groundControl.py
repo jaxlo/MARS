@@ -21,7 +21,7 @@ def selection():
 		print('Invalid Input, Try Again')
 		selection()
 
-class lora(): #NEED to still to make it so that it brings in new gps data
+class lora(): 
 	def format_data(input):
 		date = arrow.now().format('MM/DD/YYYY')
 		time = arrow.now().format('HH:mm:ss')
