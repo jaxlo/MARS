@@ -7,7 +7,6 @@ import serial
 
 #----- GLOBAL VARS -----#
 function = int(input('Which would you like to communicate with: \n 0: Phobos and Deimos \n 1: LoRa \n '))
-gps_input = ''
 f = open("", "a") #add filepath to whatever the .txt is
 NetworkPort = 59281
 command = 1
