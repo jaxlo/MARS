@@ -12,6 +12,6 @@ void setup() {
 void loop() {  
   if (GPSSerial.available()) {
     char c = GPSSerial.read();
-    Serial.write(c);
+    Serial.write(c); // remove write line (or comment out) so that it doesnt try to write to serial before sending over lora
     }
 }
