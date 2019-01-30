@@ -58,28 +58,23 @@ void setup()
 }
 
 int16_t packetnum = 0;  // packet counter, we increment per xmission
+int val = 0;
+char line[74];
 
 void loop()
 {
-  String line;
+  while(val<=74){
   char c = GPSSerial.read();
   Serial.write(c); // remove write line (or comment out) so that it doesnt try to write to serial before sending over lora
-  //delay(250); // Wait 1 second between transmits, could also 'sleep' here!
-  //Serial.println("\nTransmitting..."); // Send a message to rf95_server
+  line[val] = c;
+  val++;
+  //delay(250); // Wait 1/4 second between transmits, could also 'sleep' here!
+  }
+  val = 0;
   
-  //char radiopacket[20] = "Hello World #      ";
-  //itoa(packetnum++, radiopacket+13, 10);
-  //Serial.print("\nSending "); Serial.println(c);
-  //radiopacket[19] = 0;
-  
-  //Serial.println("Sending...");
-  //delay(10);
-  rf95.send((uint8_t *)c, 1000);
+  rf95.send((uint8_t *)line, 74);
 
   //Serial.println("\nWaiting for packet to complete..."); 
   rf95.waitPacketSent();
   
   
-  
-
-}
