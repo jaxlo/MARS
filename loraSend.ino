@@ -60,17 +60,19 @@ void setup()
 int16_t packetnum = 0;  // packet counter, we increment per xmission
 int val = 0;
 char line[74];
+char c;
 
 void loop()
 {
-  while(val<=74){
-  char c = GPSSerial.read();
-  Serial.write(c); // remove write line (or comment out) so that it doesnt try to write to serial before sending over lora
-  line[val] = c;
-  val++;
-  //delay(250); // Wait 1/4 second between transmits, could also 'sleep' here!
+  while(c != '$'){
+    c = GPSSerial.read();
+    Serial.write(c); // remove write line (or comment out) so that it doesnt try to write to serial before sending over lora
+    line[val] = c;
+    val++;
+    delay(250); // Wait 1/4 second between transmits, could also 'sleep' here!
   }
   val = 0;
+  //line = {}; // need to remove all items from array
   
   rf95.send((uint8_t *)line, 74);
 
@@ -78,3 +80,6 @@ void loop()
   rf95.waitPacketSent();
   
   
+  
+
+}
