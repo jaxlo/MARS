@@ -1,14 +1,17 @@
-#Made by Jackson Lohman and TJ Reynolds in 2018
+#Made by Jackson Lohman and TJ Reynolds in 2019
 #runs on the ground
 import arrow
 import socket
 import time
 import serial
 
+#----- GLOBAL VARS -----#
 function = int(input('Which would you like to communicate with: \n 0: Phobos and Deimos \n 1: LoRa \n '))
+gps_input = ''
 f = open("", "a") #add filepath to whatever the .txt is
 NetworkPort = 59281
 command = 1
+#-----------------------#
 
 def selection():
 	if function == 0:
@@ -19,7 +22,7 @@ def selection():
 		print('Invalid Input, Try Again')
 		selection()
 
-class lora(): 
+class lora(): #NEED to still to make it so that it brings in new gps data
 	def format_data(input):
 		date = arrow.now().format('MM/DD/YYYY')
 		time = arrow.now().format('HH:mm:ss')
@@ -60,9 +63,15 @@ class lora():
 		readser = ser.readline().decode()
 		data = str(readser)
 		start = data[:6]
-		if start == '$GPGGA':
-			print(data)
-			lora.format_data(data)
+		if start == '$GPGGA' or start == '$GPVTG':
+			if start == '$GPVTG':
+				data2 = data.find('$GPGGA')
+				data3 = data[data2:]
+				print(data3)
+				lora.format_data(data3)
+			elif start == '$GPGGA':
+				print(data)
+				lora.format_data(data)
 		else:
 			print('Incomplete Data... Trying Again')
 			lora.getdata()
@@ -100,3 +109,4 @@ class rpi(): #turns on and off camera
 		rpi.socketSend()
 
 selection()
+
