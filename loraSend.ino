@@ -1,4 +1,4 @@
-// Made by Jackson Lohman and TJ Reynolds 2018
+// Made by Jackson Lohman and TJ Reynolds 2019
 // Part of this code is borrowed from adafruit.com and https://github.com/robertsmarty/adafruit3078gps/blob/master/Adafruit%20Feather%2032u4%20LoRa/GPS_TX.ino#L80
 
 #include <SPI.h>
